@@ -118,5 +118,6 @@ dist
 .pnp.*
 
 backend/src/utils/googleResponse.js
+README.md
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node
