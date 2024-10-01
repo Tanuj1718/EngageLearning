@@ -10,7 +10,7 @@ dotenv.config({
 
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://vercel.com/tanujs-projects-ca8ac3a9/engage-learning/Cfj28vmk1JGYTsVjeroGMgHRvGE7');
+    res.header('Access-Control-Allow-Origin', 'https://engage-learning-iey6hztrp-tanujs-projects-ca8ac3a9.vercel.app');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
   });
