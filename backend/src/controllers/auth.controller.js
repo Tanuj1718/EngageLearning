@@ -13,18 +13,14 @@ const jwtKey = process.env.JWT_SECRET
 const Signup = async (req, res) => {
     try {
         console.log("Received")
-        const { fullname, email, phone, password, location } = req.body;
-        console.log(fullname+email+password+location)
+        const { username, email, password} = req.body;
+        console.log(username+email+password)
 
-        if (!fullname || !email || !phone || !password || !location) {
-            console.log(fullname + email + phone + password + location);
+        if (!username || !email || !password ) {
+            console.log(username + email + password + location);
             return res.status(400).json({ message: 'All fields are required' });
         }
 
-        const existingUserByPhone = await User.findOne({ phone });
-        if (existingUserByPhone) {
-            return res.status(409).json({ message: 'Phone number already exists' });
-        }
 
         const existingUserByEmail = await User.findOne({ email });
         if (existingUserByEmail) {
@@ -34,16 +30,14 @@ const Signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = await User.create({
-            fullname: fullname,
+            username: username,
             email,
-            phone,
-            password: hashedPassword,
-            location,
+            password: hashedPassword
         });
         console.log(newUser);
 
         res.status(200).json({
-            fullname: newUser.fullname,
+            username: newUser.username,
             email: newUser.email
         });
     } catch (error) {
@@ -55,13 +49,13 @@ const Signup = async (req, res) => {
 
 const Signin = async (req, res) => {
     try {
-        const { fullname, password } = req.body;
+        const { email, password } = req.body;
 
-        if (!fullname || !password) {
+        if (!email || !password) {
             return res.status(400).json({ message: 'All fields are required!' });
         }
 
-        const user = await User.findOne({ fullname });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({ message: 'Invalid username or password!' });
         }

@@ -102,16 +102,10 @@ const ResponsePage: React.FC = () => {
 
         {/* Submit Another Question Button */}
         <Button
-        onClick={() => router.push("/")}
+        onClick={() => router.push("/RequestForm")}
         className="w-full">
         Submit Another Question
         </Button>
-        {/* <button
-          onClick={() => router.push("/")}
-          className="mt-6 w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Submit Another Question
-        </button> */}
       </div>
     </div>
   );

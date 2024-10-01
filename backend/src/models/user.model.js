@@ -1,7 +1,7 @@
 import mongoose, {Schema} from "mongoose"
 
 const userSchema = new Schema({
-    fullname: {
+    username: {
         type: String,
         required: true,
     },
@@ -10,18 +10,9 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
-    phone:{
-        type: String,
-        required: true,
-    },
     password: {
         type: String,
         unique: true,
-        required: true,
-    },
-    location: {
-        type: String,
-        lowercase: true,
         required: true,
     },
     refreshToken: {

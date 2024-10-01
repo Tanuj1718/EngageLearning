@@ -46,7 +46,7 @@ const SignUpForm = () => {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      const response = await fetch('http://localhost:8000/register/signup', {
+      const response = await fetch('http://localhost:2000/register/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

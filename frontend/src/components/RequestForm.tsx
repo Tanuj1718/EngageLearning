@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
-import { Input } from "./ui/input";
 
 interface FormData {
   question: string;
@@ -123,8 +122,8 @@ const RequestForm: React.FC = () => {
           name="humourLevel"
           value={form.humourLevel}
           onChange={handleChange}
-          min={1}
-          max={100}
+          min={0}
+          max={101}
           className="w-full mt-2"
         />
         <div className="text-right text-sm text-gray-600">
