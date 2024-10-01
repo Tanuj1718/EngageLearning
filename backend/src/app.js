@@ -1,19 +1,15 @@
 import express from "express"
-import cors from "cors"
 const app = express()
 import dotenv from "dotenv"
+import cors from 'cors'
 dotenv.config({
     path: "./.env"
 })
 
 
 
+app.use(cors())
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://engage-learning-iey6hztrp-tanujs-projects-ca8ac3a9.vercel.app');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
 //common middlewares
 app.use(express.json())
 
