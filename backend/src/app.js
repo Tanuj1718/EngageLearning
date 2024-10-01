@@ -7,20 +7,20 @@ dotenv.config({
 })
 
 
-const corsOptions = {
-  origin: 'https://engage-learning.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'CONNECT', 'HEAD', 'PATCH', 'TRACE'],
-  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
-};
 
-// Use CORS middleware
-app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://engage-learning.vercel.app');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH, TRACE'); 
+      return res.sendStatus(204); // No Content
+  }
 
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', 'https://engage-learning.vercel.app');
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//     next();
-//   });
+  next();
+});
+
 
 //common middlewares
 app.use(express.json())
