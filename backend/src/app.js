@@ -9,11 +9,7 @@ dotenv.config({
 const app = express();
 
 // Enable CORS
-app.use(cors({
-    origin: 'https://engage-learning.vercel.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
-}));
+app.use(cors())
 
 // Common middleware
 app.use(express.json());
