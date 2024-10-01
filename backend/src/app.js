@@ -10,8 +10,8 @@ dotenv.config({
 
 
 app.use(cors({
-  origin: 'https://engage-learning.vercel.app/', // Change this to your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: 'https://engage-learning.vercel.app', // Change this to your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'CONNECT', 'HEAD', 'PATCH', 'TRACE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 // app.use((req, res, next) => {
@@ -22,7 +22,6 @@ app.use(cors({
 
 //common middlewares
 app.use(express.json())
-app.options('*', cors());
 
 //import routes
 import signupRouter from "./routes/signup.route.js"
