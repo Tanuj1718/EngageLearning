@@ -122,8 +122,8 @@ const RequestForm: React.FC = () => {
           name="humourLevel"
           value={form.humourLevel}
           onChange={handleChange}
-          min={0}
-          max={101}
+          min={1}
+          max={100}
           className="w-full mt-2"
         />
         <div className="text-right text-sm text-gray-600">
