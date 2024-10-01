@@ -18,13 +18,13 @@ function getGeminiModel() {
 }
 
 
-function generatePrompt(question, limit, language, humor) {
+function generatePrompt(question, answerLength, language, humor) {
   return `Analyze the question (${question}) extracted from a form:
   Please return json response using the following schema:
 {
   "message": "description",
   "responseText" : {
-        "analysis": "description",
+        "answer": "description",
         "useCases": {
             "UseCase1": "description",
             "UseCase2": "description"
@@ -42,7 +42,7 @@ function generatePrompt(question, limit, language, humor) {
 }
 
 Please provide the following analysis in ${language} language:
-1. Response should be ${limit}.
+1. Response should be ${answerLength}.
 2. Language of the response should contain ${humor}% humor.
 3. Explain answer of the question briefly.
 3. Answer of the question should also contain two real world use cases or examples.
@@ -53,10 +53,10 @@ NOTE: all fields are compulsory and If you don't provide a value it will break t
 }
 
 
-async function analyzeDoc(question, limit, language, humor ) {
+async function analyzeDoc(question, answerLength, language, humor ) {
   try {
     const model = getGeminiModel();
-    const prompt = generatePrompt(question, limit, language, humor);
+    const prompt = generatePrompt(question, answerLength, language, humor);
     // console.log(prompt);
     const result = await model.generateContent(prompt);
     // console.log(result.response.text())

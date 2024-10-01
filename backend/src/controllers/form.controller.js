@@ -4,8 +4,8 @@ import { analyzeDoc } from "../utils/googleResponse.js";
 
 const createResponse = async (req, res)=>{
     try {
-        const {question, limit, language, humor} = req.body;
-        const response = await analyzeDoc(question, limit, language, humor)
+        const {question, answerLength, language, humor} = req.body;
+        const response = await analyzeDoc(question, answerLength, language, humor)
         res.status(200).json({
             response
         })

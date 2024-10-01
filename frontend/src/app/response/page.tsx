@@ -64,7 +64,7 @@ const ResponsePage: React.FC = () => {
   }
 
   const { responseText } = data;
-  const { analysis, useCases, steps, realWorldExamples } = responseText;
+  const { answer, useCases, steps, realWorldExamples } = responseText;
 
   // Helper function to render key-value pairs
   const renderKeyValue = (title: string, items: Record<string, string>) => (
@@ -88,7 +88,7 @@ const ResponsePage: React.FC = () => {
         {/* Analysis */}
         <div className="mb-6">
           <h3 className="text-xl font-semibold">Answer:</h3>
-          <p className="mt-2">{analysis}</p>
+          <p className="mt-2">{answer}</p>
         </div>
 
         {/* Use Cases */}
