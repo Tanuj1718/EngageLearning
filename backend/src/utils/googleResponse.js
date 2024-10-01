@@ -44,7 +44,8 @@ function generatePrompt(question, limit, language, humor) {
 Please provide the following analysis in ${language} language:
 1. Response should be ${limit}.
 2. Language of the response should contain ${humor}% humor.
-3. Explaination of the question should contain two real world use cases or examples.
+3. Explain answer of the question briefly.
+3. Answer of the question should also contain two real world use cases or examples.
 4. If possible share steps for a simple practical activity to understand the concepts involved in the asked question.
 
 NOTE: all fields are compulsory and If you don't provide a value it will break the app`;
