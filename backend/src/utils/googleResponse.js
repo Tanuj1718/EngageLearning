@@ -20,13 +20,34 @@ function getGeminiModel() {
 
 function generatePrompt(question, limit, language, humor) {
   return `Analyze the question (${question}) extracted from a form:
+  Please return json response using the following schema:
+{
+  "message": "description",
+  "responseText" : {
+        "analysis": "description",
+        "useCases": {
+            "UseCase1": "description",
+            "UseCase2": "description"
+        },
+        "steps": {
+            "Step1": "description",
+            "Step2": "description",
+            "Step3": "description"
+        },
+        "realWorldExamples": {
+            "Example1": "description",
+            "Example2": "description"
+        }
+    }
+}
 
 Please provide the following analysis in ${language} language:
 1. Response should be ${limit}.
 2. Language of the response should contain ${humor}% humor.
-3. Explaination of the question should contain two real world use cases or examples which are in key-value pair.
-4. If possible share steps for a simple practical activity to understand the concepts involved in the asked question. Each steps should be in key value pair.
-Please ensure your response is in JSON format as per the specified schema. NOTE: all fields are compulsory and If you don't provide a value it will break the app    `;
+3. Explaination of the question should contain two real world use cases or examples.
+4. If possible share steps for a simple practical activity to understand the concepts involved in the asked question.
+
+NOTE: all fields are compulsory and If you don't provide a value it will break the app`;
 
 }
 
@@ -35,9 +56,11 @@ async function analyzeDoc(question, limit, language, humor ) {
   try {
     const model = getGeminiModel();
     const prompt = generatePrompt(question, limit, language, humor);
-    console.log(prompt);
+    // console.log(prompt);
     const result = await model.generateContent(prompt);
+    // console.log(result.response.text())
     const parsedResult = JSON.parse(result.response.text());
+    console.log(parsedResult)
     return parsedResult;
   } catch (error) {
     console.error("Error analyzing form:", error);

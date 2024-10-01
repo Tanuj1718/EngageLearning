@@ -7,8 +7,7 @@ const createResponse = async (req, res)=>{
         const {question, limit, language, humor} = req.body;
         const response = await analyzeDoc(question, limit, language, humor)
         res.status(200).json({
-            message: 'Response created successfully',
-            ideas: response
+            response
         })
 
     } catch (error) {
