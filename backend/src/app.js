@@ -14,9 +14,11 @@ app.use((req, res, next) => {
   
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH, TRACE'); 
-      return res.sendStatus(204); // No Content
-  }
+    res.header('Access-Control-Allow-Origin', 'https://engage-learning.vercel.app'); // Include this for preflight
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    return res.sendStatus(204); // No Content
+}
 
   next();
 });
