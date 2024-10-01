@@ -12,7 +12,7 @@ dotenv.config({
 app.use(cors({
   origin: 'https://engage-learning.vercel.app', // Change this to your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'CONNECT', 'HEAD', 'PATCH', 'TRACE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
 // app.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', '*');
