@@ -1,37 +1,30 @@
-import express from "express"
-const app = express()
-import cors from 'cors'
-import dotenv from "dotenv"
+import express from "express";
+import cors from 'cors';
+import dotenv from "dotenv";
+
 dotenv.config({
     path: "./.env"
-})
-
-
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://engage-learning.vercel.app');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Origin', 'https://engage-learning.vercel.app'); // Include this for preflight
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    return res.sendStatus(204); // No Content
-}
-
-  next();
 });
 
+const app = express();
 
-//common middlewares
-app.use(express.json())
+// Enable CORS
+app.use(cors({
+    origin: 'https://engage-learning.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+}));
 
-//import routes
-import signupRouter from "./routes/signup.route.js"
-import signinRouter from "./routes/signin.route.js"
-import formRouter from "./routes/form.route.js"
-app.use('/register', signupRouter)
-app.use('/login', signinRouter)
-app.use('/form', formRouter)
-export {app}
+// Common middleware
+app.use(express.json());
+
+// Import routes
+import signupRouter from "./routes/signup.route.js";
+import signinRouter from "./routes/signin.route.js";
+import formRouter from "./routes/form.route.js";
+
+app.use('/register', signupRouter);
+app.use('/login', signinRouter);
+app.use('/form', formRouter);
+
+export { app };
