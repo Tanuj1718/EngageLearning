@@ -5,11 +5,10 @@ const app = express();
 
 // Enable CORS for all origins during development
 app.use(cors({
-    origin: 'https://engage-learningf.vercel.app', // Allow specific origin
-    methods: 'GET,POST,PUT,DELETE', // Allow specific methods
-    allowedHeaders: 'Content-Type,Authorization,application/json' // Allow specific headers
+    origin: 'https://engage-learningf.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Content-Length', 'Host', 'Connection', 'Accept-Encoding']
   }));
-  
 
 // Common middlewares
 app.use(express.json());
