@@ -3,16 +3,17 @@ import cors from 'cors';
 
 const app = express();
 
-// Enable CORS for all origins during development
-  app.use(cors({
+app.use(cors({
     origin: 'https://engage-learningf.vercel.app',
-    credentials: true
-  }))
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Content-Length', 'Host', 'Connection', 'Accept-Encoding'],
+    credentials: true // credentials to true as for authorization headers
+}));
 
-// Common middlewares
+app.options('*', cors());
+
 app.use(express.json());
 
-// Import routes
 import signupRouter from './routes/signup.route.js';
 import signinRouter from './routes/signin.route.js';
 import formRouter from './routes/form.route.js';
@@ -21,7 +22,13 @@ app.use('/register', signupRouter);
 app.use('/login', signinRouter);
 app.use('/form', formRouter);
 
-// Handle preflight requests (OPTIONS)
-app.options('*', cors());
+app.use((req, res, next) => {
+    res.status(404).json({ message: 'Route not found' });
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Internal Server Error' });
+});
 
 export { app };
