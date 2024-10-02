@@ -5,8 +5,9 @@ const app = express();
 
 // Enable CORS for all origins during development
 app.use(cors({
-    origin: '*',
-    allowedHeaders: '*',
+    origin: 'https://engage-learningf.vercel.app', // Allow specific origin
+    methods: 'GET,POST,PUT,DELETE', // Allow specific methods
+    allowedHeaders: 'Content-Type,Authorization,application/json' // Allow specific headers
   }));
   
 
