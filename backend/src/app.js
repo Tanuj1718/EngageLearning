@@ -4,7 +4,11 @@ import cors from 'cors';
 const app = express();
 
 // Enable CORS for all origins during development
-app.use(cors({ origin: '*' }));
+app.use(cors({
+    origin: '*',
+    allowedHeaders: '*',
+  }));
+  
 
 // Common middlewares
 app.use(express.json());
