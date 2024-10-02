@@ -38,9 +38,9 @@ const SignInForm = () => {
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
       const response = await fetch("https://engange-learningb.netlify.app/login/signin", {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           email: values.email,
