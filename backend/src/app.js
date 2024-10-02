@@ -5,9 +5,9 @@ const app = express();
 
 // Enable CORS for all origins during development
   app.use((req, res, next)=>{
-    res.header('Access-Control-Allow-Origin', 'https://engage-learningf.vercel.app');
-    res.header('Access-Control-Allow-Headers','Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Content-Language', 'Content-Length', 'Accept','Accept-Language', 'Connection','Accept-Encoding', 'Host','Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET','DELETE','POST','HEAD','PATCH','OPTIONS');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers','*');
+    res.header('Access-Control-Allow-Methods','GET','DELETE','POST','HEAD','PATCH','OPTIONS');
     
     if(req.method === 'OPTIONS'){
       return res.status(200).json({});
