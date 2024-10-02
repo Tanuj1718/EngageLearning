@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
         "Content-Type": "application/json",
         // Add any required headers for your backend API
       },
+      credentials: 'include',
       body: JSON.stringify({
         question,
         answerLength,

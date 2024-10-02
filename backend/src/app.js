@@ -1,28 +1,40 @@
+// app.js
 import express from 'express';
 import cors from 'cors';
-
-const app = express();
-
-// Enable CORS for all origins during development
-  app.use((req, res, next)=>{
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers','Content-Type','application/json');
-    res.header('Access-Control-Allow-Methods','GET','DELETE','POST','HEAD','PATCH','OPTIONS');
-    
-    if(req.method === 'OPTIONS'){
-      return res.status(200).json({});
-    }
-    next();
-  })
-
-// Import routes
 import signupRouter from './routes/signup.route.js';
 import signinRouter from './routes/signin.route.js';
 import formRouter from './routes/form.route.js';
 
+const app = express();
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// CORS Configuration
+const corsOptions = {
+  origin: '*', // Change this in production
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 204,
+};
+
+// Enable CORS
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
+
+// Mount Routers
 app.use('/register', signupRouter);
 app.use('/login', signinRouter);
 app.use('/form', formRouter);
 
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 export { app };
+
