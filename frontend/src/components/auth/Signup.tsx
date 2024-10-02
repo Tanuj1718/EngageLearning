@@ -46,10 +46,10 @@ const SignUpForm = () => {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      const response = await fetch("https://engage-learningb.vercel.app/register/signup", {
-        method: "POST",
+      const response = await fetch('http://localhost:2000/register/signup', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username: values.username,
