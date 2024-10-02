@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     const { question, answerLength, language, humourLevel } = await request.json();
 
     // TODO: Replace with your actual backend API endpoint
-    const backendApiUrl = "https://engage-learningb.vercel.app/form/ideas";
+    const backendApiUrl = "https://engage-learningback.vercel.app/form/ideas";
 
     const backendResponse = await fetch(backendApiUrl, {
       method: "POST",
