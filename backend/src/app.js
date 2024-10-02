@@ -6,7 +6,7 @@ const app = express();
 // Enable CORS for all origins during development
   app.use((req, res, next)=>{
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers','*');
+    res.header('Access-Control-Allow-Headers','Content-Type','application/json');
     res.header('Access-Control-Allow-Methods','GET','DELETE','POST','HEAD','PATCH','OPTIONS');
     
     if(req.method === 'OPTIONS'){
