@@ -4,17 +4,10 @@ import cors from 'cors';
 const app = express();
 
 // Enable CORS for all origins during development
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://engage-learningf.vercel.app');
-    res.header('Access-Control-Allow-Headers', '*');
-
-    res.header('Access-Control-Allow-Methods', 'GET','POST','DELETE','PATCH','PUT','OPTIONS')
-
-    if(req.method === 'OPTIONS'){
-      return res.status(200).json({});
-    }
-    next();
-  });
+  app.use(cors({
+    origin: 'https://engage-learningf.vercel.app',
+    credentials: true
+  }))
 
 // Common middlewares
 app.use(express.json());
