@@ -4,11 +4,13 @@ dotenv.config({ path: './.env' });
 import cors from 'cors'
 const app = express();
 
-// Set up CORS headers
-app.use(cors());
 
 // Common middlewares
 app.use(express.json());
+
+// Set up CORS headers
+app.use(cors());
+
 // Import routes
 import signupRouter from './routes/signup.route.js';
 import signinRouter from './routes/signin.route.js';
